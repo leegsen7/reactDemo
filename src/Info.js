@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import {addCount} from './redux/action'
 
 class Info extends Component {
 	render(){
