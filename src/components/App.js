@@ -3,16 +3,13 @@ import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Home from './Home'
 import Info from './Info'
 import User from './User'
+import Alert from './alert'
 
 import '../style/App.scss';
 
 class App extends Component {
   constructor(props){
     super(props)
-    this.state = {
-      itemArr: ['哈哈','嘻嘻'],
-      inputVal: ''
-    }
     this.linkArr = [{
       text: '首页',
       url: '/'
@@ -33,6 +30,7 @@ class App extends Component {
               <Link to={item.url} className="link-item" key={item.url}>{item.text}</Link>
             )}
           </header>
+          <Alert></Alert>
           <div className='route-page'>
             <Route path='/' component={Home} exact></Route>
             <Route path='/info' component={Info}></Route>

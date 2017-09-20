@@ -1,16 +1,20 @@
 import React,{Component} from 'react'
-
+import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux'
+import * as action from '../redux/action'
 import '../style/home'
 
-export default class Home extends Component {
+class Home extends Component {
   constructor(props){
     super(props)
     this.state = {
-      itemArr: ['哈哈','嘻嘻'],
       inputVal: ''
     }
   }
 	render(){
+    let {todoList,dispatch} = this.props
+    this.fn = bindActionCreators(action,dispatch)
+
 		return (
 			<div className="home-page">
 				<div className="page-title">这是Home页</div>
@@ -24,7 +28,7 @@ export default class Home extends Component {
             />
             <button onClick={this.addFn}>添加</button>
           </div>
-          {this.state.itemArr.map((item,index) =>
+          {todoList.map((item,index) =>
             <div className="box-item" key={index}>{index+1}. {item}
               <button onClick={this.deleteFn.bind(this,index)}>删除</button>
             </div>
@@ -46,16 +50,20 @@ export default class Home extends Component {
   addFn = () => {
     let val = this.state.inputVal
     if (!val) return
-    this.state.itemArr.push(val)
+    this.fn.addList(val)
     this.setState({
-      itemArr: this.state.itemArr,
       inputVal: ''
     })
   }
   deleteFn(index){
-    this.state.itemArr.splice(index,1)
-    this.setState({
-      itemArr: this.state.itemArr
+    this.fn.showAlert({
+      flag: true,
+      title: '确认删除？',
+      confirmCallback: () => this.fn.delList(index)
     })
   }
 }
+
+export default connect(state => ({
+  todoList: state.todoList
+}))(Home)
