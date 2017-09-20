@@ -1,2 +1,5 @@
-import { createStore } from 'redux'
-import {reducer} from './reducer'
+import { createStore,combineReducers } from 'redux'
+
+import * as reducer from './reducer'
+
+export default createStore(combineReducers(reducer))

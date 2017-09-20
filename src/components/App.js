@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
-
 import Home from './Home'
 import Info from './Info'
 import User from './User'
 
-import './style/App.scss';
+import '../style/App.scss';
 
-export default class App extends Component {
+class App extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -44,3 +43,5 @@ export default class App extends Component {
     )
   }
 }
+
+export default App

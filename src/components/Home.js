@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 
-import './style/home'
+import '../style/home'
 
 export default class Home extends Component {
   constructor(props){
